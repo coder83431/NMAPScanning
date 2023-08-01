@@ -1,49 +1,42 @@
 <p align="center">
-<img src="https://imgur.com/jC9F3V8.png"/>
+<img src="https://imgur.com/1aKhtZP.png"/>
 </p>
 
-<h1>osTicket - Setup and Usage of Proton VPN </h1>
-This tutorial outlines the process of retrieving and observing IP addresses while using computers in different locations, which all have different IP addresses. We will observe our own desktop IP address, then the IP addresses within a different location in an Azure virtual machine. Finally, we will observe the final IP address through which our device is connected on Proton VPN.
+<h1>NMAP Scanning In Kali Linux Lab </h1>
+This tutorial gives a brief demonstration on how NMAP works. NMAP is a open-source command-prompt tool that can be used to identity the hosts, services, and version of OSs are running on a network as well as what ports they may have open. A few basic Nmap command will be executed within a Kali Linux ISO image in Vmware Player 17. We will be scanning the website scanme.nmap.org. This website allows users to scan the IP address associated with this website for educatinal purposes.
 .<br />
 
 
 <h2>Environments and Technologies Used</h2>
 
-- Microsoft Azure (Virtual Machines/Compute)
-- Remote Desktop
-- Proton VPN
+- Vmware Player 17
+- Kali  Linux ISO Image
+-Command Prompt
 
 <h2>Operating Systems Used </h2>
 
-- Windows 10</b> (version 22H2)
+- Kali Linux</b> 
 
 <h2>Installation Steps</h2>
-
-
-<p>  
-<img src = "https://imgur.com/tPLmzJs.png " height="80%" width="80%" alt="Disk Sanitization Steps"/>
-
-</p>
 
 <p>Overview</p>
 
 <p>
-<img src = "https://imgur.com/4SNVlfC.png" " height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src = "https://imgur.com/tACTJXN.png" " height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
  <p>
-1. Browse to https://whatismyipaddress.com/ and take note of your own computer's IP address  in a text file.
+1. First we will navigate to VMware Workstation 17 Player an open the Kali Linux ISO image VM.
 
 </p>                                                                                                    
                                                                                                      
 <p>
-<img src= "https://imgur.com/pPgcdOz.png" " height="80%" width="80%" alt="Disk Sanitization Steps" />
+<img src= "https://imgur.com/vA0AE5t.png" " height="80%" width="80%" alt="Disk Sanitization Steps" />
 </p>
 
 <p>
                                                                                                  
                                                                                                  
-                                                                                                 
-2.Create a resource group in Microsoft Azure. Make the resource group be located in a different area than your own computer.
+2. Once navigated to the command prompt, type the command nmap scanme.nmap.org. Using this basic command, we were able to scan a single IP address on scanme.nmap.org to identify the specific port, port state, and service that this host is running.                                                                         
 </p>
 <br />
 
@@ -51,60 +44,51 @@ This tutorial outlines the process of retrieving and observing IP addresses whil
 
 
 <p>
-<img src="https://imgur.com/1pvRT18.png" alt="Disk Sanitization Steps"/>
+<img src="https://imgur.com/6KIeZt7.png" />
+ />
+"/>
 </p>
 
 
 <p>
-<img src = "https://imgur.com/3HF3a21.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src = "https://imgur.com/EPMw1dV.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 <p>
-3. Create a Windows 10 Virtual Machine in the location of your resource group (both which is in another geographic location than your own).
-Log into the VM with Remote Desktop
-Browse to https://whatismyipaddress.com/ and take note of your VMs IP in a text file.
-</p>
-<br />
-
-
-
-
-<p>
-<img src = "https://imgur.com/290CTCp.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-
-
-<p>
-<img src = "https://imgur.com/CFGwidV.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
-
-
-
-<p>
-4. On your actual computer, sign up for the free version of Proton VPN https://account.protonvpn.com/signup?plan=free&language=en. Log into the Proton VPN and choose a VPN server within another country than your own or your Azure VM. Then browse to  https://whatismyipaddress.com/ once more to view your IP address.
-
+3. The command "-sS" that is used for the scan scanme.nmap.org is TCP SYN scan or half-open/stealth scan. The commands by having NMAP first send out a TCP SYN packet to the targeted host. After the host responds with a SYN-ACK packet, NMAP then sends a RST packet to close the connection to the host rather than sending back a ACK packet. Here, we can see whether each port on the host is open or closed.
 </p>
 <br />
 
+
+
 <p>
-<img src="https://imgur.com/8UHGoeX.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src = "https://imgur.com/Mhbqqqe.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
-<p>
-<img src="https://imgur.com/KRBIf5T.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
 
 
 <p>
-5. Try browsing to Google, Disney, and/or Amazon and see if there is anything different about the sites in relation to the location of your VPN server . Is your  language or URL different?
+4. The command -sV that is used within nmap -sV scanme.nmap.org can be used to identify the versions of services that the host may be using. As we can see, the http protocol is using the verison of Apache htpd 2.4.7. This type of scan is helpful for identidying vulnerabilities when it comes to outdated services that  host may be running.
 
 </p>
 <br />
 
 
 <p>
-<img src="https://imgur.com/beY8Kft.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<img src="https://imgur.com/PROFgWc.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 </p>
 
 
-6. Its now time to clean up your Azure resources. Make sure to delete the resource group and resources you've create and ensure to disconnect from the Proton VPN server.
+<p>
+5. Next, let's try the command nmap -oN scanme.nmap.org. The "-oN" within this command will capture the results of the nmap scan and place the results within the file output.txt.
+
+</p>
+<br />
+
+
+<p>
+<img src="https://imgur.com/ioxBBDE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+</p>
+
+
+6.  The last two commands we can try out are -sN and -sF. The command -sN apart of nmap -sN scanme.nmap.org sends TCP packets to ports without any flags set. The -sF commands sends TCP packets to the target host with the FIN set. For both types of scans used, we can see that nmap wausn't able to determine the state of the ports that were scanned. These scans are typically used when you want to be more stealthy with your scans, so firewall associated with the hpst may have blocked these types of scans.
